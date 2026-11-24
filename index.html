@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090816">
+  <title>Foxscript</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%238b5cf6'/%3E%3Cpath d='M13 16l17 9h4l17-9-4 23-15 13-15-13z' fill='%23fff'/%3E%3Cpath d='M32 25l-8 10 8 7 8-7z' fill='%238b5cf6'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <section class="platform-screen" id="platformScreen" aria-labelledby="platformTitle">
+    <div class="platform-card">
+      <div class="login-brand">
+        <span class="brand-mark">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 4l6 3.5h6L21 4l-1.7 10.3L12 20l-7.3-5.7L3 4Z"/>
+            <path d="m8 9.5 4 3.2 4-3.2-1.7 5.2H9.7L8 9.5Z" class="fox-face"/>
+          </svg>
+        </span>
+        <div>
+          <strong>FOX<span>SCRIPT</span></strong>
+          <small>تسجيل الدخول</small>
+        </div>
+      </div>
+
+      <h1 id="platformTitle">اختر المنصة</h1>
+      <p>حدد المنصة التي تريد استخدامها قبل فتح لوحه التوقعات .</p>
+
+      <div class="platform-options" role="radiogroup" aria-label="اختر المنصة">
+        <button class="platform-option" type="button" role="radio" aria-checked="false" data-platform="1xBet">
+          <span class="platform-logo bet-logo">1<span>x</span>Bet</span>
+          <span class="option-check"></span>
+        </button>
+        <button class="platform-option" type="button" role="radio" aria-checked="false" data-platform="MelBet">
+          <span class="platform-logo mel-logo">mel<span>bet</span></span>
+          <span class="option-check"></span>
+        </button>
+      </div>
+
+      <div class="demo-fields">
+        <label for="demoUserId">
+          ID اللاعب
+          <input id="demoUserId" type="text" inputmode="numeric" maxlength="12" placeholder="أدخل ID اللاعب" autocomplete="off">
+        </label>
+        <label for="demoCode">
+          كود الدخول
+          <input id="demoCode" type="password" maxlength="12" placeholder="أدخل الكود" autocomplete="off">
+        </label>
+      </div>
+      <small class="code-error" id="codeError" aria-live="polite"></small>
+
+      <button class="continue-button" id="continueButton" type="button" disabled>
+        متابعة
+      </button>
+
+      <small class="login-note">Foxscript</small>
+    </div>
+  </section>
+
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Foxscript الرئيسية">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 4l6 3.5h6L21 4l-1.7 10.3L12 20l-7.3-5.7L3 4Z"/>
+          <path d="m8 9.5 4 3.2 4-3.2-1.7 5.2H9.7L8 9.5Z" class="fox-face"/>
+        </svg>
+      </span>
+      <span>FOX<span>SCRIPT</span></span>
+    </a>
+    <button class="menu-button" id="menuButton" type="button" aria-label="فتح قائمة المدير" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <aside class="admin-panel" id="adminPanel" aria-hidden="true" aria-labelledby="adminTitle">
+    <div class="admin-heading">
+      <div>
+        <span class="eyebrow"</span>ل</span>
+        <h2 id="adminTitle">LASTA</h2>
+      </div>
+      <button class="admin-close" id="adminClose" type="button" aria-label="إغلاق اللوحة">×</button>
+    </div>
+
+    <label for="codeDuration">
+      مدة ظهور الكود التجريبي
+      <select id="codeDuration">
+        <option value="5">5 دقائق</option>
+        <option value="10">10 دقائق</option>
+        <option value="15">15 دقائق</option>
+        <option value="20">20 دقيقة</option>
+        <option value="25">25 دقيقة</option>
+        <option value="30">30 دقيقة</option>
+        <option value="35">35 دقيقة</option>
+        <option value="40">40 دقيقة</option>
+        <option value="45">45 دقيقة</option>
+        <option value="50">50 دقيقة</option>
+        <option value="55">55 دقيقة</option>
+        <option value="60">ساعة</option>
+      </select>
+    </label>
+
+    <button class="admin-generate" id="adminGenerate" type="button">إنشاء كود تجريبي</button>
+
+    <div class="code-result" id="codeResult" hidden>
+      <span>الكود التجريبي</span>
+      <strong id="generatedCode">—</strong>
+      <button type="button" id="copyCode">نسخ</button>
+    </div>
+
+    <div class="account-count">
+      <span>الحسابات التي دخلت بالأكواد</span>
+      <strong id="accountCount">0</strong>
+    </div>
+
+  </aside>
+
+  <main>
+    <section class="hero">
+      <div class="status-pill">
+        <span class="pulse"></span>
+        النظام نشط
+      </div>
+
+      <div class="code-countdown" id="codeCountdown" hidden>
+        <span>الوقت المتبقي للكود</span>
+        <strong id="countdownValue">00:00</strong>
+      </div>
+
+      <div class="hero-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M13 2 4.5 13.2h6L9.8 22l9.7-12.8h-6.2L13 2Z"/>
+        </svg>
+      </div>
+
+      <h1>FOX<span>SCRIPT</span></h1>
+
+      <div class="generator-card">
+        <div class="game-tabs" role="tablist" aria-label="اختر اللعبة">
+          <button class="game-tab active" type="button" role="tab" aria-selected="true" data-game="airplane">
+            الطيارة
+          </button>
+          <button class="game-tab" type="button" role="tab" aria-selected="false" data-game="apple">
+            التفاحة
+          </button>
+        </div>
+
+        <div class="card-heading">
+          <div>
+            <span class="eyebrow">سيناريو الاختبار</span>
+            <h2 id="scenarioTitle">جاهز للتوليد</h2>
+          </div>
+          <span class="mode-badge">طبيعي</span>
+        </div>
+
+        <div class="apple-grid" id="appleGrid" hidden aria-label="خمسة مربعات للتفاحة">
+          <button type="button" class="apple-box" data-box="1" aria-label="المربع الأول">1</button>
+          <button type="button" class="apple-box" data-box="2" aria-label="المربع الثاني">2</button>
+          <button type="button" class="apple-box" data-box="3" aria-label="المربع الثالث">3</button>
+          <button type="button" class="apple-box" data-box="4" aria-label="المربع الرابع">4</button>
+          <button type="button" class="apple-box" data-box="5" aria-label="المربع الخامس">5</button>
+        </div>
+
+        <div class="result-grid">
+          <div class="result-item">
+            <span>الفكرة</span>
+            <strong id="ideaValue">—</strong>
+          </div>
+          <div class="result-item">
+            <span>المستوى</span>
+            <strong id="levelValue">—</strong>
+          </div>
+        </div>
+
+        <button class="generate-button" id="generateButton" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 4v6h6M20 20v-6h-6M19 9A7.5 7.5 0 0 0 6.2 6.2L4 10m16 4-2.2 3.8A7.5 7.5 0 0 1 5 15"/>
+          </svg>
+          توليد سيناريو جديد
+        </button>
+      </div>
+
+      <div class="disclaimer">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 3 2.7 20h18.6L12 3Zm0 6v5m0 3v.1"/>
+        </svg>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
