@@ -1,0 +1,2 @@
+# Foxscript
+Foxscript
